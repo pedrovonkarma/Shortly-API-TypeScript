@@ -6,7 +6,7 @@ async function create(req, res) {
     const {url} = req.body
     const token = res.locals.token
     try {
-        const result = urlServices.create(url,token);
+        const result = await urlServices.create(url,token);
        
     res.status(201).send(result)
     
@@ -20,7 +20,7 @@ async function select(req, res) {
     const {id} = req.params
 
     try {
-        const result = urlServices.select(id)
+        const result = await urlServices.select(id)
         res.status(200).send(result)
     
     } catch (error) {

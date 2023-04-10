@@ -14,9 +14,16 @@
       message: "No result for this search!",
     };
   }
+  function conflictError(message) {
+    return {
+      name: "ConflictError",
+      message,
+    };
+  }
 
   
   export default {
     unauthorizedError,
     notFoundError,
+    conflictError
   };

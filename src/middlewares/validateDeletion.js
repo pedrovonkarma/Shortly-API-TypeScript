@@ -5,8 +5,10 @@ export async function validateDelete(req, res, next){
     const token = res.locals.token
     const {id} = req.params
     try{
-        const user = userRepositories.findUserByToken(token);
-        const url = userRepositories.findUserByLink(id)
+        const user = await userRepositories.findUserByToken(token);
+        const url = await userRepositories.findUserByLink(id);
+       
+        
         if(!url.rows[0]){
             throw errors.unauthorizedError();
         }

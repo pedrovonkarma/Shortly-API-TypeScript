@@ -8,7 +8,15 @@ async function create(name, email, password ) {
     
   }
 
-  async function update(email) {
+  async function update(email, password) {
+    if(!email || !password){
+      throw errors.unauthorizedError();
+    }
+    
+        const mail = await userRepositories.findUserByEmail(email)
+        if(!mail.rows[0] || !bcrypt.compareSync(password, mail.rows[0].password)){
+          throw errors.unauthorizedError();
+        }
     const token = uuid()
     const obj = {token}
     await userRepositories.update(token, email)

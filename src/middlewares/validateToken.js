@@ -7,7 +7,7 @@ export async function validateToken(req, res, next){
     const token = authorization?.replace('Bearer ', '');
     if (!token) throw errors.unauthorizedError();
     try{
-        const user = userRepositories.findUserByToken(token);
+        const user = await userRepositories.findUserByToken(token);
         
         if(!user.rows[0]){
             throw errors.unauthorizedError();

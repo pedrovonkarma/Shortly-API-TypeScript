@@ -3,7 +3,12 @@ import db from "../config/database.js";
 async function findUserByToken(token) {
     return await db.query(`SELECT * FROM users WHERE token=$1`,[token]);
   }
+
+  async function findUserByEmail(email) {
+    return await db.query(`SELECT * FROM users WHERE email=$1`,[email]);
+  }
   async function findUserByLink(id) {
+    
     return await db.query(`SELECT user_id FROM links WHERE "id" = $1`, [id]);
   }
 
@@ -19,5 +24,6 @@ async function findUserByToken(token) {
     findUserByToken,
     findUserByLink,
     create,
-    update
+    update,
+    findUserByEmail
   }
