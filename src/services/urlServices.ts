@@ -4,7 +4,7 @@ import errors from "../errors/index.js";
 
 import { nanoid } from "nanoid";
 
-async function create(url,token ) {
+async function create(url:string,token:string ){
     const shortUrl = nanoid(8)
     let id = await urlRepositories.findMaxId();
     id = id.rows[0].max +1
@@ -15,7 +15,7 @@ async function create(url,token ) {
        return obj
   }
 
-  async function select( id ) {
+  async function select( id:string ) {
     let obj = await urlRepositories.selectLinkById(id);
   if(!obj.rows[0]){
     throw errors.notFoundError();}

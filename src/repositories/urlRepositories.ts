@@ -7,7 +7,7 @@ async function findMaxId() {
     return await db.query(`SELECT id FROM users WHERE "token" = $1`, [token]);
   }
 
-  async function create(userId:string, url:string, shortUrl:string) {
+  async function create(userId:any, url:string, shortUrl:string) {
     return await db.query(`INSERT INTO links (user_id, url, shorturl) VALUES($1, $2, $3)`, [userId, url, shortUrl]);
   }
 

@@ -7,10 +7,7 @@ async function create(req: Request, res: Response) {
     const {url}: {url:string} = req.body
     const token: string = res.locals.token
     try {
-        const result:{
-            id: number;
-            shortUrl: string;
-        } = await urlServices.create(url,token);
+        const result = await urlServices.create(url,token);
        
     res.status(201).send(result)
     
