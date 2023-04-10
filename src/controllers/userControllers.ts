@@ -1,9 +1,9 @@
 
 import userServices from "../services/userServices.js";
+import { Request, Response } from "express";
 
-async function create(req, res) {
-    const {name, email, password} = req.body
-    console.log('chegou')
+async function create(req: Request, res: Response) {
+    const {name, email, password}:{name:string, email:string, password:string} = req.body
     try {
     await userServices.create(name, email, password)
     res.sendStatus(201)
@@ -14,11 +14,11 @@ async function create(req, res) {
     }
 }
 
-async function signin(req, res) {
+async function signin(req: Request, res: Response) {
     const {email, password} = req.body
     
     try {
-        const obj = await userServices.update(email, password);
+        const obj:{token:string} = await userServices.update(email, password);
        
         res.status(200).send(obj)
     

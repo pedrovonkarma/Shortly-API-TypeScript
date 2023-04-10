@@ -1,6 +1,7 @@
 import userRepositories from "../repositories/userRepositories.js"
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid';
+import errors from "../errors/index.js";
 
 async function create(name, email, password ) {
     const passwordE = bcrypt.hashSync(password, 10);

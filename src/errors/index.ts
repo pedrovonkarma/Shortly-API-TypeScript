@@ -14,7 +14,7 @@
       message: "No result for this search!",
     };
   }
-  function conflictError(message) {
+  function conflictError(message:string) {
     return {
       name: "ConflictError",
       message,

@@ -1,12 +1,14 @@
 import errors from "../errors/index.js";
 import userRepositories from "../repositories/userRepositories.js";
+import { Request, Response, NextFunction } from "express";
+import { QueryResult } from "pg";
 
-export async function validateDelete(req, res, next){
-    const token = res.locals.token
+export async function validateDelete(req: Request, res: Response, next: NextFunction){
+    const token:string = res.locals.token
     const {id} = req.params
     try{
-        const user = await userRepositories.findUserByToken(token);
-        const url = await userRepositories.findUserByLink(id);
+        const user:QueryResult<any> = await userRepositories.findUserByToken(token);
+        const url:QueryResult<any> = await userRepositories.findUserByLink(id);
        
         
         if(!url.rows[0]){

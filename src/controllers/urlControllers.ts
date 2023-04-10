@@ -1,12 +1,16 @@
 
 import urlRepositories from "../repositories/urlRepositories.js";
 import urlServices from "../services/urlServices.js";
+import { Request, Response } from "express";
 
-async function create(req, res) {
-    const {url} = req.body
-    const token = res.locals.token
+async function create(req: Request, res: Response) {
+    const {url}: {url:string} = req.body
+    const token: string = res.locals.token
     try {
-        const result = await urlServices.create(url,token);
+        const result:{
+            id: number;
+            shortUrl: string;
+        } = await urlServices.create(url,token);
        
     res.status(201).send(result)
     
@@ -16,11 +20,15 @@ async function create(req, res) {
     }
 }
 
-async function select(req, res) {
+async function select(req: Request, res: Response) {
     const {id} = req.params
 
     try {
-        const result = await urlServices.select(id)
+        const result: {
+            id: number;
+            url: string;
+            shortUrl: string;
+        } = await urlServices.select(id)
         res.status(200).send(result)
     
     } catch (error) {
@@ -29,7 +37,7 @@ async function select(req, res) {
     }
 }
 
-async function drop(req, res) {
+async function drop(req: Request, res: Response) {
     const {id} = req.params
 
     try {
